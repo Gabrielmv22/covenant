@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>CORE_HWR | High-Performance Industrial Systems</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&amp;family=JetBrains+Mono:wght@400;500;700&amp;family=Geist:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-variant": "#353534",
+                    "tertiary-fixed": "#e2e2e2",
+                    "primary-container": "#00f2ff",
+                    "on-primary-container": "#006a71",
+                    "surface": "#131313",
+                    "surface-container-high": "#2a2a2a",
+                    "on-surface": "#e5e2e1",
+                    "surface-container-low": "#1c1b1b",
+                    "on-tertiary-container": "#5e6060",
+                    "on-surface-variant": "#b9cacb",
+                    "inverse-surface": "#e5e2e1",
+                    "on-tertiary-fixed-variant": "#454747",
+                    "surface-container-highest": "#353534",
+                    "on-primary-fixed-variant": "#004f54",
+                    "tertiary": "#f7f8f8",
+                    "surface-tint": "#00dbe7",
+                    "on-secondary-container": "#0f6d00",
+                    "secondary-fixed-dim": "#2ae500",
+                    "error-container": "#93000a",
+                    "on-error": "#690005",
+                    "on-secondary-fixed-variant": "#095300",
+                    "primary-fixed": "#74f5ff",
+                    "on-secondary": "#053900",
+                    "primary-fixed-dim": "#00dbe7",
+                    "primary": "#e1fdff",
+                    "tertiary-fixed-dim": "#c6c6c7",
+                    "surface-container-lowest": "#0e0e0e",
+                    "outline-variant": "#3a494b",
+                    "secondary-fixed": "#79ff5b",
+                    "secondary-container": "#2ff801",
+                    "error": "#ffb4ab",
+                    "secondary": "#d7ffc5",
+                    "on-background": "#e5e2e1",
+                    "surface-dim": "#131313",
+                    "surface-bright": "#3a3939",
+                    "outline": "#849495",
+                    "inverse-primary": "#00696f",
+                    "on-secondary-fixed": "#022100",
+                    "tertiary-container": "#dbdbdb",
+                    "inverse-on-surface": "#313030",
+                    "on-tertiary-fixed": "#1a1c1c",
+                    "on-error-container": "#ffdad6",
+                    "on-tertiary": "#2f3131",
+                    "background": "#131313",
+                    "surface-container": "#201f1f",
+                    "on-primary-fixed": "#002022",
+                    "on-primary": "#00363a"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "container-max": "1440px",
+                    "gutter": "24px",
+                    "margin-mobile": "16px",
+                    "unit": "4px",
+                    "margin-desktop": "64px",
+                    "margin-tablet": "32px"
+            },
+            "fontFamily": {
+                    "headline-lg-mobile": ["Space Grotesk"],
+                    "headline-lg": ["Space Grotesk"],
+                    "code-sm": ["JetBrains Mono"],
+                    "body-sm": ["Geist"],
+                    "body-md": ["Geist"],
+                    "headline-xl": ["Space Grotesk"],
+                    "spec-label": ["JetBrains Mono"]
+            },
+            "fontSize": {
+                    "headline-lg-mobile": ["24px", {"lineHeight": "1.2", "fontWeight": "600"}],
+                    "headline-lg": ["32px", {"lineHeight": "1.2", "fontWeight": "600"}],
+                    "code-sm": ["13px", {"lineHeight": "1.4", "fontWeight": "400"}],
+                    "body-sm": ["14px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                    "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "headline-xl": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "spec-label": ["12px", {"lineHeight": "1.4", "letterSpacing": "0.05em", "fontWeight": "500"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .glass-card {
+            background: rgba(30, 30, 30, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid #222222;
+        }
+        .zebra-row:nth-child(even) { background-color: #1a1a1a; }
+        .zebra-row:nth-child(odd) { background-color: #121212; }
+        .glow-primary:hover {
+            box-shadow: 0 0 15px rgba(0, 242, 255, 0.3);
+        }
+        .led-pulse {
+            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: .5; transform: scale(0.9); }
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md selection:bg-primary-container selection:text-on-primary-container">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-xl border-b border-outline-variant">
+<div class="flex justify-between items-center px-margin-desktop py-4 max-w-container-max mx-auto">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-headline-lg" data-icon="memory">memory</span>
+<span class="font-headline-lg text-headline-lg-mobile tracking-tighter text-primary-fixed-dim">CORE_HWR</span>
+</div>
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-primary border-b-2 border-primary pb-1 font-body-md transition-colors duration-200" href="#">Catálogo</a>
+<a class="text-on-surface-variant font-body-md hover:text-primary-fixed transition-colors duration-200" href="#">Rendimiento</a>
+<a class="text-on-surface-variant font-body-md hover:text-primary-fixed transition-colors duration-200" href="#">Contacto</a>
+</nav>
+<button class="bg-primary text-on-primary px-6 py-2 rounded-none font-headline-lg text-spec-label uppercase tracking-widest active:scale-95 transition-all duration-100 glow-primary">
+                CONTACTO
+            </button>
+</div>
+</header>
+<main class="pt-24">
+<!-- Hero Section -->
+<section class="relative min-h-[819px] flex items-center px-margin-desktop max-w-container-max mx-auto overflow-hidden">
+<div class="absolute inset-0 z-0 opacity-20 pointer-events-none">
+<div class="w-full h-full bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-primary-container/20 via-transparent to-transparent"></div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center z-10">
+<div class="space-y-8">
+<div class="inline-flex items-center gap-3 px-3 py-1 border border-primary-container/30 bg-primary-container/5 rounded-none">
+<span class="w-2 h-2 rounded-full bg-secondary-fixed led-pulse"></span>
+<span class="font-code-sm text-spec-label text-primary-fixed-dim uppercase tracking-widest">System Status: Optimal</span>
+</div>
+<h1 class="font-headline-xl text-headline-xl text-primary max-w-2xl leading-none">
+                        HARDWARE ESPECIALIZADO SIN CUELLOS DE BOTELLA
+                    </h1>
+<p class="font-body-md text-on-surface-variant max-w-lg">
+                        Ingeniería de grado industrial diseñada para romper los límites térmicos convencionales. Nuestros sistemas están optimizados para cargas de trabajo críticas, garantizando un rendimiento del 100% bajo estrés continuo.
+                    </p>
+<div class="flex gap-4">
+<button class="bg-primary-container text-on-primary-container px-8 py-4 font-headline-lg text-body-md uppercase font-bold glow-primary transition-all">
+                            EXPLORAR CATÁLOGO
+                        </button>
+<button class="border border-primary-container text-primary-container px-8 py-4 font-headline-lg text-body-md uppercase font-bold hover:bg-primary-container/10 transition-all">
+                            VER BENCHMARKS
+                        </button>
+</div>
+</div>
+<div class="relative group">
+<div class="absolute -inset-1 bg-gradient-to-r from-primary-container to-secondary-container rounded-lg blur opacity-25 group-hover:opacity-40 transition duration-1000"></div>
+<img alt="Industrial Grade Server Rack" class="relative rounded-lg w-full h-[500px] object-cover grayscale brightness-75 group-hover:grayscale-0 transition-all duration-700" data-alt="Close up high-angle photograph of a high-performance computer motherboard with glowing electric blue and neon green LED lighting accents. The metallic heat sinks and intricate circuit traces are visible in a dark, moody industrial environment with soft smoke effects. The image captures a sense of military-grade reliability and futuristic power with high contrast lighting and sharp geometric details." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA_hwKbF59-6gqBj7SftXcEF_6CnDrTQg0s6bXmZdbkizRP3-xlTQNuTbrykAaCKe6vTQw43z0Kz1xtn_jBWtquLahIqaU_-pmZedly4LPiIx8h9gJanj6R-p0SztasVp03ObBysa9vcXC7qS876iBxydqDMXmNuhxKV-MeNdoSmQ_8P6sI2WW4u4LeE65LEwG1NHHKJh1orDc6aURWXpO1C8LD3g_QjM8gRFpKuVTxirsXG23NUjZLYh34H8P_4BMuutF37CWCaZrH"/>
+</div>
+</div>
+</section>
+<!-- Componentes Elite -->
+<section class="py-24 px-margin-desktop max-w-container-max mx-auto">
+<div class="flex items-end justify-between mb-16">
+<div>
+<span class="font-code-sm text-primary uppercase tracking-widest block mb-2">// PRODUCT_LINE_UP</span>
+<h2 class="font-headline-lg text-headline-lg text-on-surface uppercase">Componentes Elite</h2>
+</div>
+<div class="hidden md:block w-1/3 h-px bg-outline-variant mb-4"></div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<!-- Card 1 -->
+<div class="glass-card p-6 flex flex-col group transition-all duration-300 hover:border-primary-container">
+<div class="relative mb-6 overflow-hidden h-64">
+<img alt="Titan RTX Gen-V" class="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-500" data-alt="A professional studio product shot of a futuristic graphics card with massive metallic heat pipes and electric blue LED lighting. The shroud features sharp, angular geometry in a matte black finish with carbon fiber accents. The lighting is cold and clinical, highlighting the industrial precision of the hardware against a dark, tech-oriented background with a subtle blue haze." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD0bbVNQ9jCDbQ9EcRDI4D9byqfjz7mGfjgWoD-yNVAkR01llKeq63Z8c5F-aDvoCunMGlcfDpBogQVdRDljwGc1H9krFOAF59wohA4tSRvMPU1x68cgOE66jC4POM80igGVADVsVxXw8Bx1IVq_itrDor20SfH3BGpXyK8wiNjbi6uVpoF_Hqd-uvObyrhB7RL0h5moiEhjK2vyVgbWCS6DEw0UGpfbBzFv_6oyDT57IrvhlbzsJHJjexCeDt1Tegm6dozn1udTfwa"/>
+<span class="absolute top-4 left-4 bg-secondary-fixed text-on-secondary-fixed px-3 py-1 font-spec-label text-spec-label uppercase font-bold">En Stock</span>
+</div>
+<h3 class="font-headline-lg text-headline-lg-mobile text-primary mb-2">Titan RTX Gen-V</h3>
+<p class="font-code-sm text-primary-fixed-dim text-headline-lg-mobile mb-6 tracking-tighter">€3,499.00</p>
+<div class="space-y-2 border-t border-outline-variant pt-6 flex-grow">
+<div class="flex justify-between font-spec-label text-spec-label">
+<span class="text-on-surface-variant">RENDERING (4K)</span>
+<span class="text-secondary-fixed-dim">0.42s / frame</span>
+</div>
+<div class="flex justify-between font-spec-label text-spec-label">
+<span class="text-on-surface-variant">PEAK TDP</span>
+<span class="text-on-surface">450W</span>
+</div>
+<div class="flex justify-between font-spec-label text-spec-label">
+<span class="text-on-surface-variant">VRAM</span>
+<span class="text-on-surface">48GB GDDR6X</span>
+</div>
+<div class="flex justify-between font-spec-label text-spec-label">
+<span class="text-on-surface-variant">THERMAL LIMIT</span>
+<span class="text-on-surface">88°C</span>
+</div>
+</div>
+<button class="mt-8 border border-primary-container/50 text-primary hover:bg-primary-container hover:text-on-primary-container py-3 font-headline-lg text-spec-label uppercase transition-all tracking-widest">CONFIGURAR SISTEMA</button>
+</div>
+<!-- Card 2 -->
+<div class="glass-card p-6 flex flex-col group transition-all duration-300 hover:border-primary-container border-primary-container shadow-[0_0_20px_rgba(0,242,255,0.1)]">
+<div class="relative mb-6 overflow-hidden h-64">
+<img alt="Core-i9 14900KS" class="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-500" data-alt="A macro photograph of a high-end processor chip held by a mechanical robot arm in a sterile cleanroom environment. The chip has complex golden contact points and etched branding. The scene is illuminated by neon green and white clinical lighting, emphasizing a high-tech atmosphere of precision engineering and advanced semiconductor manufacturing." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA_FO02Ic8s21Itq-ocDyhO1wfZfI8PvfK1BMaLPhjCvJFpuSvmIi1xkc__F02XvuAmeCygtaIQb0k3NAPKpCTvbKZrTnDx4NXtgsl2_Gy7fSys_u4gNTpJLayNKDHmI9PJg_3PFJdtXWBwVMzgXw2hd5usvtvj3kR-MO6a_EbrkDFBhZ3FVgknhpTBvB0RAkgIeA5UM1J8Lj4nGIbtoxjLMQyApwxL76W3gfNd2dwnzjb9LcaTMx2AbXASb7mhnl7cKfiT0rek2dBg"/>
+<span class="absolute top-4 left-4 bg-error-container text-on-error-container px-3 py-1 font-spec-label text-spec-label uppercase font-bold">Limitado</span>
+</div>
+<h3 class="font-headline-lg text-headline-lg-mobile text-primary mb-2">Core-i9 14900KS</h3>
+<p class="font-code-sm text-primary-fixed-dim text-headline-lg-mobile mb-6 tracking-tighter">€789.90</p>
+<div class="space-y-2 border-t border-outline-variant pt-6 flex-grow">
+<div class="flex justify-between font-spec-label text-spec-label">
+<span class="text-on-surface-variant">CLOCK BOOST</span>
+<span class="text-secondary-fixed-dim">6.2 GHz</span>
+</div>
+<div class="flex justify-between font-spec-label text-spec-label">
+<span class="text-on-surface-variant">CORES / THREADS</span>
+<span class="text-on-surface">24 / 32</span>
+</div>
+<div class="flex justify-between font-spec-label text-spec-label">
+<span class="text-on-surface-variant">L3 CACHE</span>
+<span class="text-on-surface">36MB</span>
+</div>
+<div class="flex justify-between font-spec-label text-spec-label">
+<span class="text-on-surface-variant">STRESS TEMP</span>
+<span class="text-on-surface">92°C</span>
+</div>
+</div>
+<button class="mt-8 bg-primary-container text-on-primary-container py-3 font-headline-lg text-spec-label uppercase transition-all tracking-widest font-bold">ADQUIRIR AHORA</button>
+</div>
+<!-- Card 3 -->
+<div class="glass-card p-6 flex flex-col group transition-all duration-300 hover:border-primary-container">
+<div class="relative mb-6 overflow-hidden h-64">
+<img alt="X670E Overclock" class="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-500" data-alt="A wide angle, dramatic shot of a high-end ATX motherboard installed in a dark tempered glass computer case. The board features massive brushed aluminum heatsinks and integrated RGB strips flowing with neon green light. The background is a dark, tech-focused laboratory setting with blurred server racks and cable management systems, giving a sense of cutting-edge hardware architecture." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDt9VG8yguONS5G2x1ZKwEbQhL5SgtwkQMfPn9RF9_4eTwXbNDEWL8riJtnDWjran1VGCHzsm9cYa_tAxGooELnQuzEZ7uq_GN2dm-_XmNKWRr0og-7NIRV9vhGmJ8VZStXmgDXLOPQ0cA9UyYJ9spN51VlXUtegC4TVvtbQ2U6MOBIFc63NAxMgF0vwr5WIj2ZlYVIlQSVgshR7xkl4npcYFx_lYkl8Au4p1xGgx4I_bbj-vdMjy2FcbpBOVjYtMNWu6uqNtD1laDf"/>
+<span class="absolute top-4 left-4 bg-surface-variant text-on-surface-variant px-3 py-1 font-spec-label text-spec-label uppercase font-bold">Bajo Pedido</span>
+</div>
+<h3 class="font-headline-lg text-headline-lg-mobile text-primary mb-2">X670E Overclock</h3>
+<p class="font-code-sm text-primary-fixed-dim text-headline-lg-mobile mb-6 tracking-tighter">€545.00</p>
+<div class="space-y-2 border-t border-outline-variant pt-6 flex-grow">
+<div class="flex justify-between font-spec-label text-spec-label">
+<span class="text-on-surface-variant">VRM PHASES</span>
+<span class="text-on-surface">24+2+1</span>
+</div>
+<div class="flex justify-between font-spec-label text-spec-label">
+<span class="text-on-surface-variant">MAX RAM</span>
+<span class="text-on-surface">192GB DDR5</span>
+</div>
+<div class="flex justify-between font-spec-label text-spec-label">
+<span class="text-on-surface-variant">PCIE GEN</span>
+<span class="text-on-surface">5.0 Support</span>
+</div>
+<div class="flex justify-between font-spec-label text-spec-label">
+<span class="text-on-surface-variant">PORTS</span>
+<span class="text-on-surface">Dual USB4</span>
+</div>
+</div>
+<button class="mt-8 border border-primary-container/50 text-primary hover:bg-primary-container hover:text-on-primary-container py-3 font-headline-lg text-spec-label uppercase transition-all tracking-widest">SOLICITAR PRESUPUESTO</button>
+</div>
+</div>
+</section>
+<!-- Comparativa de Rendimiento -->
+<section class="py-24 bg-surface-container-lowest">
+<div class="px-margin-desktop max-w-container-max mx-auto">
+<div class="mb-12">
+<span class="font-code-sm text-primary uppercase tracking-widest block mb-2">// BENCHMARK_DATA</span>
+<h2 class="font-headline-lg text-headline-lg text-on-surface uppercase">Comparativa de Rendimiento</h2>
+</div>
+<div class="overflow-x-auto border border-outline-variant">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-high border-b border-outline-variant">
+<th class="p-6 font-spec-label text-primary uppercase tracking-widest border-r border-outline-variant">Especificación</th>
+<th class="p-6 font-spec-label text-primary uppercase tracking-widest border-r border-outline-variant">Ultra-Core i9 Elite</th>
+<th class="p-6 font-spec-label text-primary uppercase tracking-widest">Threadripper Pro 7000</th>
+</tr>
+</thead>
+<tbody class="font-code-sm text-on-surface">
+<tr class="zebra-row">
+<td class="p-6 border-r border-outline-variant text-on-surface-variant">Cores / Threads</td>
+<td class="p-6 border-r border-outline-variant">24C / 32T</td>
+<td class="p-6 font-bold text-secondary-fixed">96C / 192T</td>
+</tr>
+<tr class="zebra-row">
+<td class="p-6 border-r border-outline-variant text-on-surface-variant">Base Frequency</td>
+<td class="p-6 border-r border-outline-variant font-bold text-secondary-fixed">3.2 GHz</td>
+<td class="p-6">2.5 GHz</td>
+</tr>
+<tr class="zebra-row">
+<td class="p-6 border-r border-outline-variant text-on-surface-variant">Boost Frequency</td>
+<td class="p-6 border-r border-outline-variant font-bold text-secondary-fixed">6.0 GHz</td>
+<td class="p-6">5.1 GHz</td>
+</tr>
+<tr class="zebra-row">
+<td class="p-6 border-r border-outline-variant text-on-surface-variant">TDP (Stock)</td>
+<td class="p-6 border-r border-outline-variant font-bold text-secondary-fixed">125W</td>
+<td class="p-6">350W</td>
+</tr>
+<tr class="zebra-row">
+<td class="p-6 border-r border-outline-variant text-on-surface-variant">Max Operating Temp</td>
+<td class="p-6 border-r border-outline-variant">100°C</td>
+<td class="p-6 font-bold text-secondary-fixed">95°C</td>
+</tr>
+<tr class="zebra-row">
+<td class="p-6 border-r border-outline-variant text-on-surface-variant">L3 Cache Size</td>
+<td class="p-6 border-r border-outline-variant">36MB</td>
+<td class="p-6 font-bold text-secondary-fixed">384MB</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p class="mt-4 font-code-sm text-on-surface-variant opacity-60">Datos obtenidos en pruebas de laboratorio CORE_LAB bajo condiciones controladas (22°C ambiente).</p>
+</div>
+</section>
+<!-- Consulta de Compatibilidad -->
+<section class="py-24 px-margin-desktop max-w-container-max mx-auto">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-24">
+<div>
+<span class="font-code-sm text-primary uppercase tracking-widest block mb-2">// TECHNICAL_SUPPORT</span>
+<h2 class="font-headline-lg text-headline-lg text-on-surface uppercase mb-8">Consulta de Compatibilidad</h2>
+<p class="font-body-md text-on-surface-variant mb-12">
+                        Nuestro equipo de ingenieros verificará su configuración actual para asegurar la máxima eficiencia y evitar cualquier restricción de rendimiento en su flujo de trabajo.
+                    </p>
+<div class="space-y-6">
+<div class="flex items-center gap-6 p-4 glass-card">
+<span class="material-symbols-outlined text-primary text-4xl" data-icon="support_agent">support_agent</span>
+<div>
+<h4 class="font-spec-label font-bold text-on-surface uppercase">Soporte 24/7 Industrial</h4>
+<p class="font-body-sm text-on-surface-variant">Tiempos de respuesta menores a 15 minutos.</p>
+</div>
+</div>
+<div class="flex items-center gap-6 p-4 glass-card">
+<span class="material-symbols-outlined text-secondary-fixed text-4xl" data-icon="verified_user">verified_user</span>
+<div>
+<h4 class="font-spec-label font-bold text-on-surface uppercase">Garantía Extensa</h4>
+<p class="font-body-sm text-on-surface-variant">5 años en todos los componentes críticos.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="glass-card p-10">
+<form class="space-y-6">
+<div class="space-y-2">
+<label class="font-spec-label text-spec-label text-on-surface-variant uppercase tracking-widest">Nombre Completo</label>
+<input class="w-full bg-surface-container-low border border-outline focus:border-primary-container focus:ring-0 text-on-surface py-3 px-4 outline-none transition-all" placeholder="ID_USUARIO_01" type="text"/>
+</div>
+<div class="space-y-2">
+<label class="font-spec-label text-spec-label text-on-surface-variant uppercase tracking-widest">Canal de Comunicación</label>
+<select class="w-full bg-surface-container-low border border-outline focus:border-primary-container focus:ring-0 text-on-surface py-3 px-4 outline-none transition-all appearance-none">
+<option>Discord Secure Channel</option>
+<option>Email (Encrypted)</option>
+<option>Direct Phone Link</option>
+</select>
+</div>
+<div class="space-y-2">
+<label class="font-spec-label text-spec-label text-on-surface-variant uppercase tracking-widest">Especificaciones del Sistema Actual</label>
+<textarea class="w-full bg-surface-container-low border border-outline focus:border-primary-container focus:ring-0 text-on-surface py-3 px-4 outline-none transition-all resize-none" placeholder="Indique CPU, GPU, RAM y placa base actual..." rows="4"></textarea>
+</div>
+<button class="w-full bg-primary-container text-on-primary-container py-4 font-headline-lg text-body-md font-bold uppercase glow-primary transition-all" type="submit">
+                            ENVIAR REQUERIMIENTO TÉCNICO
+                        </button>
+</form>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full bg-surface-container-lowest border-t border-outline-variant mt-24">
+<div class="flex flex-col md:flex-row justify-between items-center px-margin-desktop py-gutter gap-4 max-w-container-max mx-auto">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary" data-icon="memory">memory</span>
+<span class="font-headline-lg text-primary text-headline-lg tracking-tighter">CORE_HWR</span>
+</div>
+<div class="flex gap-8">
+<a class="font-code-sm text-code-sm uppercase text-on-surface-variant hover:text-secondary-fixed transition-colors" href="#">Soporte</a>
+<a class="font-code-sm text-code-sm uppercase text-on-surface-variant hover:text-secondary-fixed transition-colors" href="#">Privacidad</a>
+<a class="font-code-sm text-code-sm uppercase text-on-surface-variant hover:text-secondary-fixed transition-colors" href="#">Garantía</a>
+</div>
+<p class="font-code-sm text-code-sm uppercase text-on-surface-variant">
+                © 2024 CORE_HWR INDUSTRIAL SYSTEMS. ALL RIGHTS RESERVED.
+            </p>
+</div>
+</footer>
+</body></html>
