@@ -152,7 +152,7 @@ La aplicación utiliza los puntos de quiebre (breakpoints) de Tailwind (`md`, `l
 
 ## Autor
 
-Proyecto desarrollado por **[Gabriel Miño**.
+Proyecto desarrollado por **Gabriel Miño**.
 
 ---
 
