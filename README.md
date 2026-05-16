@@ -78,28 +78,10 @@ tailwind.config = {
     }
   }
 }
+
+
 ```
 
-## ## Características principales
-
-### Diseño y estética
-
-- Paleta oscura "Cyber-Tech" con fondo profundo (`#050505`), acentos en azul neón (`#0066FF`) y cian (`#00f2ff`).
-- Tipografía híbrida utilizando Google Fonts: `Plus Jakarta Sans` para legibilidad moderna y `Space Mono` para un toque de ingeniería/código.
-- Efectos visuales como Glassmorphism (desenfoque en la navegación), degradados radiales, botones con efecto "glitch" y tarjetas de producto con bordes y sombras de neón al interactuar.
-- Imágenes en escala de grises que recuperan el color al pasar el cursor, dando una sensación de activación de hardware.
-
-### Navegación principal
-
-El sitio incluye una barra superior fija translúcida (efecto blur) con navegación fluida hacia las secciones principales:
-
-- Inicio
-- Workstations
-- Componentes
-- Laboratorio
-- Cotizar
-
-También incluye un botón interactivo para desplegar un menú secundario o carrito de compras.
 
 ### Secciones del sitio
 
@@ -126,23 +108,12 @@ También incluye un botón interactivo para desplegar un menú secundario o carr
 
 ---
 
-## Tecnologías utilizadas
-
-- **HTML5** para la estructura semántica de la interfaz.
-- **Tailwind CSS (vía JIT/CDN)** para estilos rápidos, diseño basado en utilidades y grillas responsivas.
-- **CSS3 Personalizado (`<style>`)** para animaciones `@keyframes`, ocultación de barras de desplazamiento y efectos hover complejos.
-- **Google Fonts** para las tipografías `Plus Jakarta Sans` y `Space Mono`.
-
----
-
 ## Estructura del proyecto
 
 ```text
 COVENANT/
 ├── index.html
 ├── README.md
-└── assets/
-    └── screenshot-covenant.png
 ```
 
 ## Cómo abrir el proyecto localmente
@@ -181,7 +152,7 @@ La aplicación utiliza los puntos de quiebre (breakpoints) de Tailwind (`md`, `l
 
 ## Autor
 
-Proyecto desarrollado por **[Tu Nombre/Usuario aquí]**.
+Proyecto desarrollado por **[Gabriel Miño**.
 
 ---
 
