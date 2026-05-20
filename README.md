@@ -111,9 +111,14 @@ tailwind.config = {
 ## Estructura del proyecto
 
 ```text
-COVENANT/
+covenant/
+│
 ├── index.html
-├── README.md
+├── css/
+│   └── styles.css
+└── js/
+    ├── tailwind-config.js
+    └── main.js
 ```
 
 ## Cómo abrir el proyecto localmente
