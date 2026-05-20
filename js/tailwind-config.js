@@ -1,23 +1,16 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const carrusel = document.getElementById('carrusel');
-    const btnPrev = document.getElementById('btnPrev');
-    const btnNext = document.getElementById('btnNext');
-
-    const scrollAmount = 400;
-
-    if (btnPrev && btnNext && carrusel) {
-        btnPrev.addEventListener('click', () => {
-            carrusel.scrollBy({
-                left: -scrollAmount,
-                behavior: 'smooth'
-            });
-        });
-
-        btnNext.addEventListener('click', () => {
-            carrusel.scrollBy({
-                left: scrollAmount,
-                behavior: 'smooth'
-            });
-        });
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        'cyber-blue': '#0066FF',
+        'dark-bg': '#050505',
+        'card-bg': '#0F0F12',
+        'accent-cyan': '#00f2ff'
+      },
+      fontFamily: {
+        sans: ['Plus Jakarta Sans', 'sans-serif'],
+        mono: ['Space Mono', 'monospace'],
+      }
     }
-});
+  }
+}
